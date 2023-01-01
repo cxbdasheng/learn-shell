@@ -1,0 +1,32 @@
+function add
+{
+    echo "`expr $1 + $2`"
+}
+
+function reduce
+{
+    echo "`expr $1 - $2`"
+}
+
+function multiple
+{
+    echo "`expr $1 \* $2`"
+}
+
+function divide
+{
+    echo "`expr $1 / $2`"
+}
+
+function sys_load
+{
+    echo "Memory Info"
+    echo 
+    free -m
+    echo 
+    
+    echo "Disk Info"
+    echo 
+    df -h
+    echo 
+}
