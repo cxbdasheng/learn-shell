@@ -22,4 +22,7 @@ grep -n '^root' passwd.txt
 grep -nvE '^bin' passwd.txt 
 
 # 找出系统上root、yu、nobody用户的信息
-grep -E '^\<(root|yu|nobody)\>' passwd.txt 
+grep -E '^\<(root|yu|nobody)\>' passwd.txt
+
+# 查找当前目录下有 root 的所有文件
+grep -nr root
