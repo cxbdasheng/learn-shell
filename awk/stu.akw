@@ -1,0 +1,15 @@
+BEGIN{
+	printf "%-10s %-10s %-10s %-10s %-10s %-10s \n","Name","Chinenes","Math","English","Computer","Total"
+}
+{
+	total=$2+$3+$4+$5
+	chinenes_total+=$2
+	math_total+=$3
+	english_total+=$4
+	computer_total+=$5
+	count+=total
+	printf "%-10s %-10d %-10d %-10d %-10d %-10d \n",$1,$2,$3,$4,$5,total
+}
+END{
+	printf "%-10s %-10d %-10d %-10d %-10d %-10d \n","total",chinenes_total,math_total,english_total,computer_total,count
+}
