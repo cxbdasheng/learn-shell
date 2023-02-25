@@ -1,0 +1,28 @@
+#!/bin/bash
+HOME=$(pwd)'/'
+CONFIG_FILE='process.cfg'
+
+# 获取程序名称
+function get_config_program_name() {
+  pn=$(sed -n "/\[$1\]/,/\[.*\]/p" ${HOME}${CONFIG_FILE} | grep -v -E '(\[.*\]|^$)' | awk 'BEGIN{FS="="}$1=="program_name"{print $2}')
+  echo $pn
+}
+
+# 获取程序描述
+function get_config_description() {
+  pn=$(sed -n "/\[$1\]/,/\[.*\]/p" ${HOME}${CONFIG_FILE} | grep -v -E '(\[.*\]|^$)' | awk 'BEGIN{FS="="}$1=="description"{print $2}')
+  echo $pn
+}
+
+# 获取程序参数
+function get_config_parameter() {
+  pn=$(sed -n "/\[$1\]/,/\[.*\]/p" ${HOME}${CONFIG_FILE} | grep -v -E '(\[.*\]|^$)' | awk 'BEGIN{FS="="}$1=="parameter"{print $2}')
+  echo $pn
+}
+
+# 启动
+function start() {
+  name=$(get_config_program_name $1)
+  config=$(get_config_parameter $1)
+  $name $config &
+}

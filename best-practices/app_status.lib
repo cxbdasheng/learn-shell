@@ -56,7 +56,7 @@ function get_process_pid_by_name {
   if [ $# -ne 1 ]; then
     return 1
   else
-    pids=$(ps -ef | grep $1 | grep -v grep | grep -v $0 | awk '$3==1{print $2"\n"}')
+    pids=$(ps -ef | grep $1 | grep -v grep | grep -v $0 | awk '{print $2"\n"}')
     echo $pids
   fi
 }
@@ -105,34 +105,34 @@ function format_print {
 }
 
 # 输出前置标题
-awk 'BEGIN{printf "%-20s%-10s%-10s%-6s%-7s%-10s%-20s\n","ProcessName---------","GroupName---","Status----","PID---","CPU----","MEMORY----","StartTime---"}'
+#awk 'BEGIN{printf "%-20s%-10s%-10s%-6s%-7s%-10s%-20s\n","ProcessName---------","GroupName---","Status----","PID---","CPU----","MEMORY----","StartTime---"}'
 
 # 执行有三种情况：
 # 1	无参数			列出配置文件中所有进程的运行信息
 # 2	-g GroupName	列出GroupName组内的所有进程
 # 3	process_name1	列出指定进程的运行信息
 
-if [ $# -gt 0 ]; then
-  if [ "$1" == '-g' ]; then
-    # 2	-g GroupName	列出GroupName组内的所有进程
-    shift
-    for gn in $@; do
-      is_group_in_config $gn || continue
-      for pn in $(get_all_process_by_group $gn); do
-        is_process_in_config $pn && format_print $pn $gn
-      done
-    done
-  else
-    # 3	process_name1	列出指定进程的运行信息
-    for pn in $@; do
-      gn=$(get_group_by_process_name $pn)
-      is_process_in_config $pn && format_print $pn $gn
-    done
-  fi
-else
-  # 1	无参数			列出配置文件中所有进程的运行信息
-  for pn in $(get_all_process); do
-    gn=$(get_group_by_process_name $pn)
-    is_process_in_config $pn && format_print $pn $gn
-  done
-fi
+#if [ $# -gt 0 ]; then
+#  if [ "$1" == '-g' ]; then
+#    # 2	-g GroupName	列出GroupName组内的所有进程
+#    shift
+#    for gn in $@; do
+#      is_group_in_config $gn || continue
+#      for pn in $(get_all_process_by_group $gn); do
+#        is_process_in_config $pn && format_print $pn $gn
+#      done
+#    done
+#  else
+#    # 3	process_name1	列出指定进程的运行信息
+#    for pn in $@; do
+#      gn=$(get_group_by_process_name $pn)
+#      is_process_in_config $pn && format_print $pn $gn
+#    done
+#  fi
+#else
+#  # 1	无参数			列出配置文件中所有进程的运行信息
+#  for pn in $(get_all_process); do
+#    gn=$(get_group_by_process_name $pn)
+#    is_process_in_config $pn && format_print $pn $gn
+#  done
+#fi
