@@ -77,3 +77,8 @@ for i in {0..4};do echo $i;done
 - [文本三剑客之 Sed 章节代码](https://github.com/cxbdasheng/learn-shell/tree/main/sed)
 - [文本三剑客之 Awk 章节代码](https://github.com/cxbdasheng/learn-shell/tree/main/awk)
 - [脚本实战 章节代码](https://github.com/cxbdasheng/learn-shell/tree/main/best-practices)
+
+
+## 参考 & 引用
+- [Shell 教程 | 菜鸟教程](https://www.runoob.com/linux/linux-shell.html)
+- [掌握Shell脚本编程 360架构师带你进阶Linux高手](https://coding.imooc.com/class/314.html)
